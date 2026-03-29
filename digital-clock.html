@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .clock-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        .clock {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .clock:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            margin: 0;
+        }
+        .time {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock-container">
+        <div class="clock" id="IST">
+            <h2>IST</h2>
+            <div class="time">--:--:--</div>
+        </div>
+        <div class="clock" id="GMT">
+            <h2>GMT</h2>
+            <div class="time">--:--:--</div>
+        </div>
+        <div class="clock" id="EST">
+            <h2>EST</h2>
+            <div class="time">--:--:--</div>
+        </div>
+        <div class="clock" id="PST">
+            <h2>PST</h2>
+            <div class="time">--:--:--</div>
+        </div>
+        <div class="clock" id="JST">
+            <h2>JST</h2>
+            <div class="time">--:--:--</div>
+        </div>
+        <div class="clock" id="AUS">
+            <h2>AUS</h2>
+            <div class="time">--:--:--</div>
+        </div>
+    </div>
+    <script>
+        function updateClocks() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+            document.getElementById('IST').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'Asia/Kolkata', ...options});
+            document.getElementById('GMT').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'GMT', ...options});
+            document.getElementById('EST').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'America/New_York', ...options});
+            document.getElementById('PST').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'America/Los_Angeles', ...options});
+            document.getElementById('JST').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'Asia/Tokyo', ...options});
+            document.getElementById('AUS').querySelector('.time').textContent = now.toLocaleTimeString('en-US', {timeZone: 'Australia/Sydney', ...options});
+        }
+
+        setInterval(updateClocks, 1000);
+        updateClocks();
+    </script>
+</body>
+</html>
